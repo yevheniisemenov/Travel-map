@@ -1,6 +1,6 @@
 package com.map.repository;
 
-import com.map.entity.Comment;
+import com.map.model.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

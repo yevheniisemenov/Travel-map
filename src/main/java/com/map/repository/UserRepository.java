@@ -1,6 +1,6 @@
 package com.map.repository;
 
-import com.map.entity.User;
+import com.map.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

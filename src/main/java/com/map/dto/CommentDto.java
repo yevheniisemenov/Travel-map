@@ -9,7 +9,7 @@ import java.sql.Date;
 /**
  * @author Yevhenii Semenov
  */
-public class CommentDTO {
+public class CommentDto {
 
     private long id;
 

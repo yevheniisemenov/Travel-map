@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * @author Yevhenii Semenov
  */
-public class PlaceDTO {
+public class PlaceDto {
 
     private long id;
 
