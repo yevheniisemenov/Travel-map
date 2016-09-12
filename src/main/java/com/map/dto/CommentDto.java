@@ -1,6 +1,13 @@
 package com.map.dto;
 
-import com.map.entity.User;
+
+import com.map.model.Comment;
+import com.map.model.User;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -9,49 +16,32 @@ import java.sql.Date;
 /**
  * @author Yevhenii Semenov
  */
-public class CommentDto {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class CommentDto implements Dto<Comment> {
 
     private long id;
 
     @NotNull
     private User user;
 
-    @NotNull
+    @NotEmpty
     @Min(5)
     private String text;
 
     @NotNull
     private Date date;
 
-    public long getId() {
-        return id;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
+    @Override
+    public Comment toEntity() {
+        return Comment.builder()
+                .id(id)
+                .user(user)
+                .text(text)
+                .date(date)
+                .build();
     }
 }

@@ -1,7 +1,10 @@
 package com.map.dto;
 
-import com.map.entity.Comment;
-import com.map.entity.User;
+import com.map.model.Place;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Min;
@@ -12,93 +15,46 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author Yevhenii Semenov
  */
-public class PlaceDto {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class PlaceDto implements Dto<Place> {
 
-    private long id;
-
+    private Long id;
     @NotNull
     @Size(min = 3, max = 48)
     private String name;
-
     @NotNull
     @Min(24)
     private String description;
-
     @NotNull
     private BigDecimal latitude;
-
     @NotNull
     private BigDecimal longitude;
-
     private List<MultipartFile> photos = new ArrayList<>();
-    private Map<User, Integer> rating = new HashMap<>();
-    private List<Comment> comments = new ArrayList<>();
+    private Map<UserDto, Integer> rating = new HashMap<>();
+    private List<CommentDto> comments = new ArrayList<>();
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public BigDecimal getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(BigDecimal latitude) {
-        this.latitude = latitude;
-    }
-
-    public BigDecimal getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(BigDecimal longitude) {
-        this.longitude = longitude;
-    }
-
-    public List<MultipartFile> getPhotos() {
-        return photos;
-    }
-
-    public void setPhotos(List<MultipartFile> photos) {
-        this.photos = photos;
-    }
-
-    public Map<User, Integer> getRating() {
-        return rating;
-    }
-
-    public void setRating(Map<User, Integer> rating) {
-        this.rating = rating;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
+    @Override
+    public Place toEntity() {
+        return Place.builder()
+                .id(id)
+                .name(name)
+                .description(description)
+                .latitude(latitude)
+                .longitude(longitude)
+                .photos(photos)
+                .rating(rating.entrySet().stream().collect(Collectors.toMap(
+                        e -> e.getKey().toEntity(),
+                        Map.Entry::getValue
+                )))
+                .comments(comments.stream().map(Dto::toEntity).collect(Collectors.toCollection(ArrayList::new)))
+                .build();
     }
 }

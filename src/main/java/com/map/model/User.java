@@ -1,5 +1,6 @@
 package com.map.model;
 
+import com.map.dto.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,6 +11,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -30,10 +33,10 @@ public class User {
 
     private String surname;
 
-    @Size(min = 1, max = 26)
+    @Size(min = 2, max = 24)
     private String username;
 
-    @Size(min = 6, max = 26)
+    @Size(min = 6, max = 24)
     private String password;
 
     @NotEmpty
@@ -42,4 +45,21 @@ public class User {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Comment> comments = new ArrayList<>();
+
+    @ManyToMany
+    Collection<Role> authorities = new HashSet<>();
+
+    public UserDto toDto() {
+        return UserDto.builder()
+                .id(id)
+                .name(name)
+                .surname(surname)
+                .username(username)
+                .password(password)
+                .email(email)
+                .build();
+    }
+
+
+
 }

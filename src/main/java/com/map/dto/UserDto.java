@@ -1,17 +1,25 @@
 package com.map.dto;
 
+import com.map.model.User;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Email;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
  * @author Yevhenii Semenov
  */
-public class UserDto {
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserDto implements Dto<User> {
 
-    private long id;
+    private Long id;
 
     @Size(min = 2, max = 24)
     private String name;
@@ -23,63 +31,23 @@ public class UserDto {
     @Size(min = 2, max = 24)
     private String username;
 
-    @Min(5)
+    @Size(min = 6)
     private String password;
 
     @NotNull
     @Email
-    private String mail;
+    private String email;
 
 
-    public long getId() {
-        return id;
+    @Override
+    public User toEntity() {
+        return User.builder()
+                .id(id)
+                .name(name)
+                .surname(surname)
+                .username(username)
+                .password(password)
+                .email(email)
+                .build();
     }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    /*
-     * Todo: Don't forget about equals and hashcode
-     */
 }
