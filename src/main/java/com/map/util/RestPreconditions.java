@@ -1,4 +1,4 @@
-package com.map.utils;
+package com.map.util;
 
 import com.map.exception.ResourceNotFoundException;
 
