@@ -1,6 +1,5 @@
 package com.map.dto;
 
-import com.map.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,13 +10,13 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- * @author Yevhenii Semenov
+ * @author Yevhenii Semenov, Andrew Pasika
  */
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto implements Dto<User> {
+public class UserDto {
 
     private Long id;
 
@@ -38,16 +37,4 @@ public class UserDto implements Dto<User> {
     @Email
     private String email;
 
-
-    @Override
-    public User toEntity() {
-        return User.builder()
-                .id(id)
-                .name(name)
-                .surname(surname)
-                .username(username)
-                .password(password)
-                .email(email)
-                .build();
-    }
 }

@@ -1,6 +1,5 @@
 package com.map.dto;
 
-import com.map.model.Place;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,16 +14,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
- * @author Yevhenii Semenov
+ * @author Yevhenii Semenov, Andrew Pasika
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PlaceDto implements Dto<Place> {
+public class PlaceDto {
 
     private Long id;
     @NotNull
@@ -41,20 +39,4 @@ public class PlaceDto implements Dto<Place> {
     private Map<UserDto, Integer> rating = new HashMap<>();
     private List<CommentDto> comments = new ArrayList<>();
 
-    @Override
-    public Place toEntity() {
-        return Place.builder()
-                .id(id)
-                .name(name)
-                .description(description)
-                .latitude(latitude)
-                .longitude(longitude)
-                .photos(photos)
-                .rating(rating.entrySet().stream().collect(Collectors.toMap(
-                        e -> e.getKey().toEntity(),
-                        Map.Entry::getValue
-                )))
-                .comments(comments.stream().map(Dto::toEntity).collect(Collectors.toCollection(ArrayList::new)))
-                .build();
-    }
 }

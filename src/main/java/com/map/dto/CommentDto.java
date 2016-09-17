@@ -1,7 +1,6 @@
 package com.map.dto;
 
 
-import com.map.model.Comment;
 import com.map.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,13 +13,13 @@ import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
 /**
- * @author Yevhenii Semenov
+ * @author Yevhenii Semenov, Andrew Pasika
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CommentDto implements Dto<Comment> {
+public class CommentDto {
 
     private long id;
 
@@ -34,14 +33,4 @@ public class CommentDto implements Dto<Comment> {
     @NotNull
     private Date date;
 
-
-    @Override
-    public Comment toEntity() {
-        return Comment.builder()
-                .id(id)
-                .user(user)
-                .text(text)
-                .date(date)
-                .build();
-    }
 }
