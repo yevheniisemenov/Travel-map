@@ -1,6 +1,5 @@
 package com.map.model;
 
-import com.map.dto.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -48,16 +47,5 @@ public class User {
 
     @ManyToMany
     Collection<Role> authorities = new HashSet<>();
-
-    public UserDto toDto() {
-        return UserDto.builder()
-                .id(id)
-                .name(name)
-                .surname(surname)
-                .username(username)
-                .password(password)
-                .email(email)
-                .build();
-    }
 
 }
