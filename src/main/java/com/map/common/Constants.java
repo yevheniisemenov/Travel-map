@@ -3,19 +3,22 @@ package com.map.common;
 /**
  * @author Andrew Pasika
  */
-public interface Constants {
+final public class Constants {
 
-    interface Web {
-        String HOME_URI = "/";
-        String LOGIN_URI = "/login";
-        String LOGOUT_URI = "/logout";
-        String REGISTER_URI = "/register";
-        String ERROR_URI = "/error";
-        // Base path
-        String USER_BASE_PATH = "/user";
+    private Constants() {
     }
 
-    interface Common {
-        String ROLE_PREFIX = "ROLE_";
+    final public static class Web {
+        public final static String HOME_URI = "/";
+        public final static String LOGIN_URI = "/login";
+        public final static String LOGOUT_URI = "/logout";
+        public final static String REGISTER_URI = "/register";
+        public final static String ERROR_URI = "/error";
+        // Base path
+        public final static String USER_BASE_PATH = "/user";
+    }
+
+    final public static class Common {
+        public final static String ROLE_PREFIX = "ROLE_";
     }
 }
