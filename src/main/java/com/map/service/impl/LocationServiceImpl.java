@@ -1,8 +1,6 @@
 package com.map.service.impl;
 
-import com.map.repository.LocationRepository;
 import com.map.service.LocationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,7 +8,4 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class LocationServiceImpl implements LocationService {
-
-    @Autowired
-    private LocationRepository locationRepository;
 }
