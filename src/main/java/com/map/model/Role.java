@@ -1,5 +1,6 @@
 package com.map.model;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,6 +11,7 @@ import java.util.Collection;
 /**
  * @author Andrew Pasika
  */
+@Builder
 @Data
 @Entity
 public class Role implements GrantedAuthority {
