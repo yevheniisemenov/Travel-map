@@ -1,6 +1,5 @@
 package com.map.model;
 
-import com.map.dto.RoleDto;
 import lombok.Data;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,7 +12,7 @@ import java.util.Collection;
  */
 @Data
 @Entity
-public class Role implements GrantedAuthority, DtoConvertible<RoleDto> {
+public class Role implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,10 +31,5 @@ public class Role implements GrantedAuthority, DtoConvertible<RoleDto> {
     @Override
     public String getAuthority() {
         return role;
-    }
-
-    @Override
-    public RoleDto toDto() {
-        return RoleDto.findByRole(role);
     }
 }

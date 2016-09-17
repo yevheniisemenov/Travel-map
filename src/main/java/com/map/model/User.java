@@ -16,7 +16,7 @@ import java.util.HashSet;
 import java.util.List;
 
 /**
- * @author Yevhenii Semenov
+ * @author Yevhenii Semenov, Andrew Pasika
  */
 @Builder
 @Data
@@ -59,7 +59,5 @@ public class User {
                 .email(email)
                 .build();
     }
-
-
 
 }

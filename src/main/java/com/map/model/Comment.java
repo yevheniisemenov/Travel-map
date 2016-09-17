@@ -1,7 +1,6 @@
 package com.map.model;
 
 
-import com.map.dto.CommentDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,14 +11,14 @@ import javax.persistence.*;
 import java.sql.Date;
 
 /**
- * @author Yevhenii Semenov
+ * @author Yevhenii Semenov, Andrew Pasika
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-public class Comment implements DtoConvertible<CommentDto> {
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,13 +32,4 @@ public class Comment implements DtoConvertible<CommentDto> {
 
     private Date date;
 
-    @Override
-    public CommentDto toDto() {
-        return CommentDto.builder()
-                .id(id)
-                .user(user)
-                .text(text)
-                .date(date)
-                .build();
-    }
 }
