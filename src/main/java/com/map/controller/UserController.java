@@ -1,8 +1,8 @@
 package com.map.controller;
 
+import com.map.config.security.SecurityAuthService;
 import com.map.dto.UserDto;
 import com.map.model.User;
-import com.map.security.SecurityAuthService;
 import com.map.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.map.security;
+package com.map.config.security;
 
 import com.map.model.User;
 import com.map.repository.UserRepository;

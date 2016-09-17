@@ -1,4 +1,4 @@
-package com.map.security;
+package com.map.config.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import static com.map.common.Constants.Web.*;
 
@@ -14,10 +15,10 @@ import static com.map.common.Constants.Web.*;
  * @author Andrew Pasika
  */
 @Configuration
-public class Config extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    UserAuthSuccessHandler userAuthSuccessHandler;
+    AuthenticationSuccessHandler authenticationSuccessHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -25,7 +26,7 @@ public class Config extends WebSecurityConfigurerAdapter {
         http
                 .formLogin()
                 .loginPage(LOGIN_URI)
-                .successHandler(userAuthSuccessHandler)
+                .successHandler(authenticationSuccessHandler)
                 .and()
                 .logout()
                 .logoutSuccessUrl(HOME_URI);
