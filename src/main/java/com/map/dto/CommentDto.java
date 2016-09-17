@@ -21,7 +21,7 @@ import java.sql.Date;
 @Builder
 public class CommentDto {
 
-    private long id;
+    private Long id;
 
     @NotNull
     private User user;
