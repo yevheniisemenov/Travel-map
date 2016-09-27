@@ -15,7 +15,8 @@ import java.util.HashSet;
 import java.util.List;
 
 /**
- * @author Yevhenii Semenov, Andrew Pasika
+ * @author Andrew Pasika
+ * @author Yevhenii Semenov
  */
 @Builder
 @Data
@@ -35,7 +36,6 @@ public class User {
     @Size(min = 2, max = 24)
     private String username;
 
-    @Size(min = 6, max = 24)
     private String password;
 
     @NotEmpty
