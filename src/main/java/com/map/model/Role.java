@@ -1,8 +1,6 @@
 package com.map.model;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -14,6 +12,8 @@ import java.util.Collection;
 @Builder
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Role implements GrantedAuthority {
 
     @Id
