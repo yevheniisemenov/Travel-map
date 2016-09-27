@@ -13,13 +13,13 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.Errors;
 
 import java.text.MessageFormat;
 import java.util.Collections;
 
 /**
- * @author Yevhenii Semenov, Andrew Pasika
+ * @author Andrew Pasika
+ * @author Yevhenii Semenov
  */
 @Slf4j
 @Service
@@ -41,10 +41,7 @@ public class UserServiceImpl implements UserService {
     UserDetailsService userDetailsService;
 
     @Override
-    public User register(User user, Errors errors) {
-        if (errors.hasErrors()) {
-            throw new IllegalArgumentException("Submitted User doesn't follow required rules!");
-        }
+    public User register(User user) {
         Validate.notNull(user, "No user entity was provided.");
         checkUserId(user.getId(), false);
         log.debug("Registration of user [{}]", user);
