@@ -3,18 +3,16 @@ package com.map.config;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
  * @author Andrew Pasika
  */
 @Configuration
-public class RootConfig {
+public class RootConfig extends WebMvcConfigurerAdapter {
 
     @Bean
-    @Scope("prototype")
     public ModelMapper modelMapper() {
         return new ModelMapper();
     }
-
 }
